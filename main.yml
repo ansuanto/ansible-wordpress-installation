@@ -1,0 +1,21 @@
+---
+- name: "Wordpress Installation"
+  hosts: all
+  become: true
+  vars_files:
+    - variables.yml
+  tasks:
+
+    - name: "Lamp-Installing Apache Webserver"
+      yum:
+        name: "{{packages}}"
+        state: present
+      tags:
+        - lamp
+    - name: "Lamp-Restarting Apache & php service"
+      service:
+        name: httpd
+        state: restarted
+        enabled: true
+      tags:
+        - lamp
