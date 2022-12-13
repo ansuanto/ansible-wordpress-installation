@@ -92,3 +92,37 @@
       tags:
         - lamp
         - mariadb
+
+    - name: "Lamp-mariadb-server -Setting Root Password"
+      ignore_errors: true
+      mysql_user:
+        login_user: "root"
+        login_password: ""
+        user: "root"
+        password: "{{ mysql_root_password }}"
+        host_all: true
+      tags:
+        - lamp
+        - mariadb
+
+    - name: "Lamp-mariadb-server - Removing Anonymous User"
+      mysql_user:
+        login_user: "root"
+        login_password: "{{ mysql_root_password }}"
+        user: ""
+        host_all: true
+        state: absent
+      tags:
+        - lamp
+        - mariadb
+
+    - name: "Lamp-mariadb-server -Removing Test Database"
+      mysql_db:
+        login_user: "root"
+        login_password: "{{ mysql_root_password }}"
+        name: "test"
+        state: absent
+      tags:
+        - lamp
+        - mariadb
+

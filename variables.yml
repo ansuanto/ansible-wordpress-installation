@@ -8,3 +8,4 @@ httpd_domain: wordpress.leanjoan.tech
 mysql_packages:
   - mariadb-server
   - MySQL-python
+mysql_root_password: "mysqlroot@123"
