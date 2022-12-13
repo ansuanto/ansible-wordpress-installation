@@ -31,3 +31,12 @@
         group: "{{ httpd_group }}"
       tags:
         - lamp
+    - name: "Lamp-Creating Virtualhost configuration file {{ httpd_domain }}"
+      template:
+        src: virtualhost.conf.tmpl
+        dest: /etc/httpd/conf.d/default.conf
+        owner: "{{ httpd_owner }}"
+        group: "{{ httpd_group }}"
+      tags:
+        - lamp
+
