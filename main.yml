@@ -182,4 +182,25 @@
         group: "{{ httpd_group }}"
       tags:
         - wordpress
+  
+    - name: "Post-installation restart"
+      service:
+        name: "{{ item }}"
+        state: restarted
+        enabled: true
+      with_items:
+        - "mariadb"
+        - "httpd"
+        - "php-fpm"
+      tags:
+        - wordpress
 
+    - name: "Post-installation cleanup"
+      file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - "/tmp/wordpress.tar,gz"
+        - "/tmp/wordpress"
+      tags:
+        - wordpress
