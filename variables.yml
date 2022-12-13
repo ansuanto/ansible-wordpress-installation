@@ -3,3 +3,4 @@ packages:
   - "httpd"
 httpd_owner: "apache"
 httpd_group: "apache"
+httpd_port: 80

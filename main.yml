@@ -19,3 +19,15 @@
         enabled: true
       tags:
         - lamp
+    - name: "Lamp-Installing php packages"
+      shell: amazon-linux-extras install php7.4 -y
+      tags:
+        - lamp
+    - name: "Lamp-Creating httpd.conf from template"
+      template:
+        src: httpd.conf.tmpl
+        dest: /etc/httpd/conf/httpd.conf
+        owner: "{{ httpd_owner }}"
+        group: "{{ httpd_group }}"
+      tags:
+        - lamp
