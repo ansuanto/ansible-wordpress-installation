@@ -75,4 +75,20 @@
         - "php-fpm"
       tags:
         - lamp
+          
+    - name: "Lamp-mariadb-server -package Installation"
+      yum:
+        name: "{{ mysql_packages }}"
+        state: present
+      tags:
+        - lamp
+        - mariadb
 
+    - name: "Lamp-Service Restarting/Enabling"
+      service:
+        name: mariadb
+        state: restarted
+        enabled: true
+      tags:
+        - lamp
+        - mariadb

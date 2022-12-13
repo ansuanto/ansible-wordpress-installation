@@ -5,3 +5,6 @@ httpd_owner: "apache"
 httpd_group: "apache"
 httpd_port: 80
 httpd_domain: wordpress.leanjoan.tech
+mysql_packages:
+  - mariadb-server
+  - MySQL-python
