@@ -39,4 +39,24 @@
         group: "{{ httpd_group }}"
       tags:
         - lamp
+    - name: "Lamp-Creating Documentroot for the virtualhost {{httpd_domain}}"
+      file:
+        path: "/var/www/html/{{httpd_domain}}"
+        state: directory
+        owner: "{{ httpd_owner }}"
+        group: "{{ httpd_group }}"
+      tags:
+        - lamp
+
+    - name: "Lamp-copying test pages into document root /var/www/html/{{ httpd_domain }}"
+      copy:
+        src: "{{ item }}"
+        dest: "/var/www/html/{{ httpd_domain }}"
+        owner: "{{ httpd_owner }}"
+        group: "{{ httpd_group }}"
+      with_items:
+        - test.php
+        - test.html
+      tags:
+        - lamp
 
