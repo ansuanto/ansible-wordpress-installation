@@ -173,3 +173,13 @@
         remote_src: true
       tags:
         - wordpress
+
+    - name: "Wordpress-creating wp-config.php from template"
+      template:
+        src: wp-config.php.tmpl
+        dest: "/var/www/html/{{ httpd_domain }}/wp-config.php"
+        owner: "{{ httpd_owner }}"
+        group: "{{ httpd_group }}"
+      tags:
+        - wordpress
+
