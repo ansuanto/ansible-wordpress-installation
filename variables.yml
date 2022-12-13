@@ -9,3 +9,6 @@ mysql_packages:
   - mariadb-server
   - MySQL-python
 mysql_root_password: "mysqlroot@123"
+mysql_extra_user: "bloguser"
+mysql_extra_user_password: "bloguser123"
+mysql_extra_database: "blogdb"

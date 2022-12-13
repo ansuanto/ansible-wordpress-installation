@@ -126,3 +126,26 @@
         - lamp
         - mariadb
 
+    - name: "Lamp-mariadb-server -Creating extra database {{ mysql_extra_database }}"
+      mysql_db:
+        login_user: "root"
+        login_password: "{{ mysql_root_password }}"
+        name: "{{ mysql_extra_database }}"
+        state: present
+      tags:
+        - lamp
+        - mariadb
+
+    - name: "Lamp-mariadb-server - Creating Extra user {{ mysql_extra_user }}"
+      mysql_user:
+        login_user: "root"
+        login_password: "{{ mysql_root_password }}"
+        user: "{{ mysql_extra_user }}"
+        host: "%"
+        password: "{{ mysql_extra_user_password }}"
+        priv: '{{ mysql_extra_database }}.*:ALL'
+        state: present
+      tags:
+        - lamp
+        - mariadb
+
