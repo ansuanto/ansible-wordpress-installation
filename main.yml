@@ -12,13 +12,6 @@
         state: present
       tags:
         - lamp
-    - name: "Lamp-Restarting Apache & php service"
-      service:
-        name: httpd
-        state: restarted
-        enabled: true
-      tags:
-        - lamp
     - name: "Lamp-Installing php packages"
       shell: amazon-linux-extras install php7.4 -y
       tags:
@@ -57,6 +50,29 @@
       with_items:
         - test.php
         - test.html
+      tags:
+        - lamp
+    - name: "Lamp-Running shell module to do syntax check of conf file"
+      ignore_errors: true
+      shell: httpd -t
+      register: confsyntax_status
+      tags:
+        - lamp
+
+    - name: "Content of variable confsyntax_status"
+      debug:
+        var: confsyntax_status
+      tags:
+        - lamp
+    - name: "Lamp-Restarting Apache & php service"
+      when: confsyntax_status.rc == 0
+      service:
+        name: "{{ item }}"
+        state: restarted
+        enabled: true
+      with_items:
+        - "httpd"
+        - "php-fpm"
       tags:
         - lamp
 
