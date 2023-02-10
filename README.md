@@ -1,4 +1,4 @@
-# ansible-wordpress-installation
+# Ansible-wordpress-installation
 Ansible project - Wordpress installation using ansible.
 
 This document is for fresh installation of Wordpress into ansible clients (ec2-instances) using Ansible playbook.
